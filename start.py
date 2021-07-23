@@ -15,7 +15,7 @@ base.initNametagGlobals()
 from toontown.suit import Suit, SuitDNA
 from toontown.battle import SuitBattleGlobals
 from toontown.toonbase import ToontownGlobals
-from panda3d.otp import CFSpeech, CFTimeout
+from panda3d.otp import CFSpeech, CFTimeout # This is very Open-Toontown specific so if you're using another source, I suggest you change panda3d.otp to the appropriate pointer.
 from toontown.battle import BattleProps
 from toontown.battle import BattleParticles
 
@@ -23,11 +23,6 @@ from toontown.battle import BattleParticles
 Suit.loadDialog(1)
 
 def createSuit(cogType='f', customName=None):
-	# Kobun42's very awesome create cog code
-	# complete with a "custom name" function for you nerds
-	# If you want to add level and class shit add setDisplayName to your code calling createSuit.
-	# I do NOT recommend setting the custom name to have levels and class, do displayname instead.
-	# cog.setDisplayName("Name\nBossbot\nLevel 69")
     cog = Suit.Suit() # create the entity
     cog.dna = SuitDNA.SuitDNA() # make the suit actually a suit lol
     cog.dna.newSuit(cogType) # cog type thingo

@@ -19,6 +19,28 @@ from panda3d.otp import CFSpeech, CFTimeout # This is very Open-Toontown specifi
 from toontown.battle import BattleProps
 from toontown.battle import BattleParticles
 
+from toontown.launcher.ToontownDummyLauncher import ToontownDummyLauncher
+launcher = ToontownDummyLauncher()
+ToonBase.launcher = launcher
+
+class dummyClientRepository:
+    #hacky workaround to get Toontown to shut up about the Client Repository
+    name = "ToontownDummyClientRepository"
+    class timeManager:
+        name = "ToontownDummyTimeManager" # i doubt these names matter but i guess it's so nothing gets confused lmao
+		
+        def setDisconnectReason(disconnectReason):
+            pass
+    
+    class loginFSM:
+        name = "ToontownDummyLoginFSM"
+        
+        def request(makeRequest):
+            pass
+
+cr = dummyClientRepository
+base.cr = cr
+
 # this allows the fucking chat noises to play
 Suit.loadDialog(1)
 
@@ -52,6 +74,6 @@ cum.play()
 base.oobe()
 base.run()
 
-# by the way if you close this toonbase nags you about fucking toontown client respository just ignore it until i fucking fix it because disney's sticky taped code is headache inducing for me
+# finally fixed that bozo shit of cr whining all day
 # who knows if i even will
 # will this be Kobun42's yandere simulator or even his Sellbot Field Offices? Probably tbh as it will never be completed.

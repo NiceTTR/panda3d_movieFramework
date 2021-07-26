@@ -23,23 +23,9 @@ from toontown.launcher.ToontownDummyLauncher import ToontownDummyLauncher
 launcher = ToontownDummyLauncher()
 ToonBase.launcher = launcher
 
-class dummyClientRepository:
-    #hacky workaround to get Toontown to shut up about the Client Repository
-    name = "ToontownDummyClientRepository"
-    class timeManager:
-        name = "ToontownDummyTimeManager" # i doubt these names matter but i guess it's so nothing gets confused lmao
-		
-        def setDisconnectReason(disconnectReason):
-            pass
-    
-    class loginFSM:
-        name = "ToontownDummyLoginFSM"
-        
-        def request(makeRequest):
-            pass
+from kobun42.dummy import ToontownDummyClientRepository
 
-cr = dummyClientRepository
-base.cr = cr
+base.cr = ToontownDummyClientRepository.ToontownDummyClientRepository()
 
 # this allows the fucking chat noises to play
 Suit.loadDialog(1)

@@ -3,7 +3,7 @@ This is some dumb little thing to ease me into using Panda3D for animations and 
 To keep things simple I decided to use this with the TTO source rather than making things unusually complicated.
 
 ## How the heck do I use this?
-Put this in the root directory of your Toontown source of choice.
+Put this in the root directory of your Toontown source of choice. Don't forget for your source to have the appropriate resources as well otherwise it obviously wouldn't be able to run anything.
 It's only been tested on Open Toontown as of now, but it SHOULD work for TTR, TTI, TTS, TTH, TTSH, or really any
 traditional Toontown source with some minor alterations where necessary. If it doesn't work even with any necessary alterations made to fit with another source port, submit an issue with as much detail as possible and I might be able to help you out.
 

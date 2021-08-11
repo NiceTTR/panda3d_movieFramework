@@ -1,8 +1,5 @@
 #import direct.directbase.DirectStart
 from panda3d.core import *
-#from direct.gui.OnscreenText import OnscreenText
-#from direct.actor.Actor import Actor
-#from direct.showbase.DirectObject import DirectObject
 from direct.interval.IntervalGlobal import *
 from direct.interval.IntervalGlobal import Func, Wait, Sequence # why did the first one not work so that I have to use this one
 
@@ -23,9 +20,14 @@ from toontown.launcher.ToontownDummyLauncher import ToontownDummyLauncher
 launcher = ToontownDummyLauncher()
 ToonBase.launcher = launcher
 
-from kobun42.dummy import ToontownDummyClientRepository
+# begin importing kobun42 dummy repository
 
-base.cr = ToontownDummyClientRepository.ToontownDummyClientRepository()
+try:
+    from kobun42.dummy import ToontownDummyClientRepository
+    base.cr = ToontownDummyClientRepository.ToontownDummyClientRepository()
+except ModuleNotFoundError:
+    print("The Dummy Client Repository module is missing! You may experience errors when closing or performing certain actions!")
+    base.cr = None
 
 # this allows the fucking chat noises to play
 Suit.loadDialog(1)
@@ -33,16 +35,19 @@ Suit.loadDialog(1)
 def createSuit(cogType='f', customName=None):
     cog = Suit.Suit() # create the entity
     cog.dna = SuitDNA.SuitDNA() # make the suit actually a suit lol
+    try:
+        # this is actually a way to make sure the cog exists lmfao
+        print("Spawning cog: " + SuitBattleGlobals.SuitAttributes[cogType]['name'] + "...")
+    except:
+        print("Cog type " + str(cogType) + " doesn't exist or has not been defined properly! Reverting to Flunky.")
+        cogType = 'f'
     cog.dna.newSuit(cogType) # cog type thingo
     cog.setDNA(cog.dna) # set the DNA to be the cog
-    if customName:
-        cog.setName(customName)
-    else:
-        if SuitBattleGlobals.SuitAttributes[cogType]:
-            cog.setName(SuitBattleGlobals.SuitAttributes[cogType]['name'])
-        else:
-            print("For some fucking reason we couldn't find the cog name. Whatever, we'll name it 'Suit' for now.")
-            cog.setName('Suit')
+    try:
+        cog.setName(SuitBattleGlobals.SuitAttributes[cogType]['name'])
+    except:
+        print("There appears to be an invalid name entry for the cog type requested. Please consider fixing that.")
+        cog.setName("Suit")
     cog.nametag3d.show()
     cog.addActive()
     cog.setPickable(0)
@@ -59,7 +64,3 @@ cum.play()
 
 base.oobe()
 base.run()
-
-# finally fixed that bozo shit of cr whining all day
-# who knows if i even will
-# will this be Kobun42's yandere simulator or even his Sellbot Field Offices? Probably tbh as it will never be completed.

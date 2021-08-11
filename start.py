@@ -32,7 +32,7 @@ except ModuleNotFoundError:
 # this allows the fucking chat noises to play
 Suit.loadDialog(1)
 
-def createSuit(cogType='f', customName=None):
+def createSuit(cogType='f'):
     cog = Suit.Suit() # create the entity
     cog.dna = SuitDNA.SuitDNA() # make the suit actually a suit lol
     try:

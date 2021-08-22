@@ -15,6 +15,7 @@ from toontown.toonbase import ToontownGlobals
 from panda3d.otp import CFSpeech, CFTimeout # This is very Open-Toontown specific so if you're using another source, I suggest you change panda3d.otp to the appropriate pointer.
 from toontown.battle import BattleProps
 from toontown.battle import BattleParticles
+from toontown.toon import NPCToons
 
 from toontown.launcher.ToontownDummyLauncher import ToontownDummyLauncher
 launcher = ToontownDummyLauncher()
@@ -53,6 +54,20 @@ def createSuit(cogType='f'):
     cog.setPickable(0)
     cog.loop('neutral')
     return cog # coggers
+
+def createNPCToon(NPCId=2001):
+    # Creates "NPC" Toons (Toons that exist as NPCs, Will make a DNA based Toon Spawner soon. Just not now.)
+    try:
+       print("Spawning NPC Toon: " + NPCToons.NPCToonDict[NPCId][1] + "...")
+    except:
+       print("NPC Toon " + str(NPCId) + " doesn't seem to exist. Did you enter the ID correctly? Reverting to Flippy.")
+       NPCId = 2001
+    toon = NPCToons.createLocalNPC(NPCId)
+    toon.nametag3d.show()
+    toon.addActive()
+    toon.setPickable(0)
+    toon.loop('neutral')
+    return toon #TEW TOW
 
 cog = createSuit('ym')
 cog.reparentTo(render)

@@ -69,6 +69,18 @@ def createNPCToon(NPCId=2001):
     toon.loop('neutral')
     return toon #TEW TOW
 
+def createToonUsingDNA(name="Toon", head='dss', torso='ms', legs='m', gender='m', armColor=17, gloveColor=0, legColor=17, headColor=17, topTexture=3, topTextureColor=3, sleeveTexture=3, sleeveTextureColor=3, bottomTexture=7, bottomTextureColor=2):
+    # Creates Regular Toons using DNA (similar to the way Player Toons are made.)
+    toon = Toon.Toon()
+    toonDNA = ToonDNA.ToonDNA()
+    toonDNA.newToonFromProperties(head, torso, legs, gender, armColor, gloveColor, legColor, headColor, topTexture, topTextureColor, sleeveTexture, sleeveTextureColor, bottomTexture, bottomTextureColor) # UGLY HACK
+    toon.setDNA(toonDNA)
+    toon.setName(name)
+    toon.addActive()
+    toon.setPickable(0)
+    toon.loop('neutral')
+    return toon
+
 cog = createSuit('ym')
 cog.reparentTo(render)
 cog.place()

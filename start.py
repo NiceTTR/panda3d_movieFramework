@@ -15,7 +15,7 @@ from toontown.toonbase import ToontownGlobals
 from panda3d.otp import CFSpeech, CFTimeout # This is very Open-Toontown specific so if you're using another source, I suggest you change panda3d.otp to the appropriate pointer.
 from toontown.battle import BattleProps
 from toontown.battle import BattleParticles
-from toontown.toon import NPCToons
+from toontown.toon import NPCToons, Toon, ToonDNA
 
 from toontown.launcher.ToontownDummyLauncher import ToontownDummyLauncher
 launcher = ToontownDummyLauncher()
@@ -74,6 +74,18 @@ def createToonUsingDNA(name="Toon", head='dss', torso='ms', legs='m', gender='m'
     toon = Toon.Toon()
     toonDNA = ToonDNA.ToonDNA()
     toonDNA.newToonFromProperties(head, torso, legs, gender, armColor, gloveColor, legColor, headColor, topTexture, topTextureColor, sleeveTexture, sleeveTextureColor, bottomTexture, bottomTextureColor) # UGLY HACK
+    toon.setDNA(toonDNA)
+    toon.setName(name)
+    toon.addActive()
+    toon.setPickable(0)
+    toon.loop('neutral')
+    return toon
+
+def createRandomToon(name="Toon"):
+    # Creates an entirely randomized toon. Results may not be the same twice. Use only if you really don't need specific character designs.
+    toon = Toon.Toon()
+    toonDNA = ToonDNA.ToonDNA()
+    toonDNA.newToonRandom()
     toon.setDNA(toonDNA)
     toon.setName(name)
     toon.addActive()

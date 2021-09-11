@@ -12,3 +12,9 @@ It should work if done correctly.
 
 ## Why should I use this compared to other Panda3D animation tools or my own code in general?
 In my opinion, you really shouldn't be using this. This is just a little thing I made for testing purposes and I don't really think it's something people should use. There are way better ways to make a Panda3D animation.
+
+## Confirmed Working Setups
+- Open Toontown + Panda3D-1.11.0 (OpenToontown included version with panda3d.otp and panda3d.toontown modules)
+
+## Theoretically Working Setups
+- Any TTR-Based Code + Appropriate Panda3D Release (provided you replace the panda3d.otp and panda3d.toontown calls to where they'd fit on TTR)

@@ -30,7 +30,7 @@ except ModuleNotFoundError:
     print("The Dummy Client Repository module is missing! You may experience errors when closing or performing certain actions!")
     base.cr = None
 
-# this allows the fucking chat noises to play
+# chat noises (hope to make this simpler one day)
 Suit.loadDialog(1)
 
 def createSuit(cogType='f'):
@@ -56,7 +56,7 @@ def createSuit(cogType='f'):
     return cog # coggers
 
 def createNPCToon(NPCId=2001):
-    # Creates "NPC" Toons (Toons that exist as NPCs, Will make a DNA based Toon Spawner soon. Just not now.)
+    # Creates "NPC" Toons (Toons that exist as NPCs in the TT source.)
     try:
        print("Spawning NPC Toon: " + NPCToons.NPCToonDict[NPCId][1] + "...")
     except:
@@ -92,14 +92,6 @@ def createRandomToon(name="Toon"):
     toon.setPickable(0)
     toon.loop('neutral')
     return toon
-
-cog = createSuit('ym')
-cog.reparentTo(render)
-cog.place()
-cum = Sequence()
-cum.append(Wait(10))
-cum.append(Func(cog.setChatAbsolute, "I deliver.", CFSpeech | CFTimeout))
-cum.play()
 
 base.oobe()
 base.run()
